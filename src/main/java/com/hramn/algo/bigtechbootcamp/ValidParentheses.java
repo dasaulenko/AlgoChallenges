@@ -1,5 +1,7 @@
 package com.hramn.algo.bigtechbootcamp;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Stack;
 
 /**
@@ -34,6 +36,39 @@ import java.util.Stack;
  * s consists of parentheses only '()[]{}'.
  */
 public class ValidParentheses {
+
+	class Solution_20250220 {
+		public boolean isValid (String s) {
+			if ( s == null || s.length() == 1) return false;
+
+			char[] chars = s.toCharArray();
+			Stack<Character> stack = new Stack<>();
+			stack.push(chars[0]);
+			int l = 1;
+
+			Map<Character, Character> map = new HashMap<>();
+			map.put(')', '(');
+			map.put(']','[');
+			map.put('}', '{');
+
+			while (l < chars.length) {
+				Character ch = map.get(chars[l]);
+				if (ch != null) {
+					if (stack.pop().charValue() != ch) {
+						return false;
+					}
+				} else {
+					stack.push(chars[l]);
+				}
+				l++;
+			}
+
+			return stack.isEmpty();
+		}
+	}
+
+
+
 	class Solution {
 	    public boolean isValid(String s) {
 	        char[] arr = s.toCharArray();
