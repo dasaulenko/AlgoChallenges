@@ -1,4 +1,4 @@
-package com.hramn.algo.bigtechbootcamp;
+package com.hramn.algo.arrays;
 /**
  * Task
  * You are given an array prices where prices[i] is the price of a given stock 
@@ -30,6 +30,40 @@ package com.hramn.algo.bigtechbootcamp;
  * 0 <= prices[i] <= 10**4
  */
 public class BestTimeToBuyAndSellStock {
+
+	public static void main (String[] args) {
+		BestTimeToBuyAndSellStock cl = new BestTimeToBuyAndSellStock();
+		Solution_20250220 s = cl.new Solution_20250220();
+		int[] arr = {3, 5, 10, 1, 9 ,2};
+		System.out.println (s.profit(arr));
+	}
+
+// 3 5 10 1 9 2 
+// - 2 7  0 6 0
+// - - 5  0 4 0
+// - - -  0 0 0
+// - - -  - 8 1
+// - - -  - - 0
+
+	class Solution_20250220 {
+		public int profit (int[] arr) {
+			if (arr == null || arr.length < 2) return 0;
+			
+			int r = arr.length - 1;
+			int maxPrice = arr[r];
+			int maxProfit = 0;
+
+			while (r > 0) {
+				if (arr[r-1] > maxPrice) {
+					maxPrice = arr[r-1];
+				} else if (maxProfit < maxPrice - arr[r-1]) {
+					maxProfit = maxPrice - arr[r-1];
+				}
+				r--;
+			}
+			return maxProfit;
+		}
+	}
 
 	class Solution {
 	    public int maxProfit(int[] prices) {
