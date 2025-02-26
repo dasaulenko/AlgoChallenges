@@ -1,4 +1,4 @@
-package com.hramn.algo.bigtechbootcamp;
+package com.hramn.algo.numbers;
 /**
  * Task
  * Given an integer x, return true if x is a palindrome, and false otherwise.
@@ -24,7 +24,32 @@ package com.hramn.algo.bigtechbootcamp;
  * Follow up: Could you solve it without converting the integer to a string?
  */
 public class PalindromeNumber {
-	
+
+	public static void main (String[] args) {
+		PalindromeNumber palindromeNumber = new PalindromeNumber();
+		Solution_20250220 s = palindromeNumber.new Solution_20250220();
+		System.out.println (s.palindrome(123450));
+	}
+
+	class Solution_20250220 {
+		public boolean palindrome (int x) {
+			if (x < 0) return false;
+			if (x < 10) return true;
+			if (x % 10 == 0) return false;
+
+			int p = 0;
+
+			while (p < x) {
+				p = (p * 10) + (x % 10);
+				x = x / 10;
+			}
+
+			if (p == x) return true;
+			if (p - (x * 10) < 10) return true;
+			return false;
+		}
+	}
+
 	class Solution {
 	    public boolean isPalindrome(int x) {
 	        char[] arr = ("" + x).toCharArray();

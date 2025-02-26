@@ -15,11 +15,22 @@
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.release>23</maven.compiler.release>
-		<src.dir>src</src.dir>
+		<src.dir>src/main/java</src.dir>
+		<test.dir>src/test/java</test.dir>
   </properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-api</artifactId>
+			<version>5.12.0</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
 
 	<build>
 		<sourceDirectory>${src.dir}</sourceDirectory>
+		<testSourceDirectory>${test.dir}</testSourceDirectory>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
