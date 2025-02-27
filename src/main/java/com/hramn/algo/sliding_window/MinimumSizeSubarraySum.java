@@ -1,5 +1,7 @@
 package com.hramn.algo.sliding_window;
 /**
+ * https://leetcode.com/problems/minimum-size-subarray-sum/description/
+ * 
  * 209. Minimum Size Subarray Sum
  * 
  * Given an array of positive integers nums and a positive integer target, 
@@ -21,9 +23,9 @@ package com.hramn.algo.sliding_window;
  * Output: 0
  * 
  * Constraints:
- * 1 <= target <= 10**9
- * 1 <= nums.length <= 10**5
- * 1 <= nums[i] <= 10**4
+ * 1 <= target <= 10^9
+ * 1 <= nums.length <= 10^5
+ * 1 <= nums[i] <= 10^4
  * 
  * Follow up: If you have figured out the O(n) solution, try coding another 
  * solution of which the time complexity is O(n log(n)).
@@ -33,13 +35,44 @@ package com.hramn.algo.sliding_window;
 // nums = [5]	target = 6	result = 0
 // nums = [1, 2, 3, 4, 5]	target = 3	result = 1
 public class MinimumSizeSubarraySum {
-
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
-	}
 	
-	class Solution {
+	class BruteforceSolution { // O(N^2), O(1)
+		public int minSubArrayLen(int target, int[] nums) {
+			int result = Integer.MAX_VALUE;
+			boolean isResultExist = false;
+			for (int i = 0; i < nums.length; i++) {
+				int sum = 0;
+				for (int k = i; k < nums.length; k++) {
+					sum += nums[k];
+					if (sum >= target) {
+						isResultExist = true;
+						result = Math.min(result, k - i + 1);
+						break;
+					}
+ 				}
+			}
+			return isResultExist ? result : 0;
+		}
+	}
+
+	class SlidingWindowSolution_20250227 { // O(n), O(1)
+		public int minSubArrayLen(int target, int[] nums) {
+			int result = Integer.MAX_VALUE, l = 0, sum = 0;
+			boolean isResultExist = false;
+			for (int r = 0; r < nums.length; r++) {
+				sum += nums[r];
+				while (sum >= target) {
+					isResultExist = true;
+					result = Math.min (result, r - l + 1);
+					sum -= nums[l];
+					l++;
+				}
+			}
+			return isResultExist ? result : 0;
+		}
+	}
+
+	class SlidingWindowSolution {
 		public int minSubArrayLen(int target, int[] nums) {
 			int result = Integer.MAX_VALUE;
 			boolean isExist = false;
