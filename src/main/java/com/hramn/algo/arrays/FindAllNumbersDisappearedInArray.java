@@ -29,7 +29,7 @@ import java.util.List;
  * assume the returned list does not count as extra space.
  */
 public class FindAllNumbersDisappearedInArray {
-	class Solution {
+	class Solution { // O(N), O(1)
 		public List<Integer> findDisappearedNumbers(int[] nums) {
 			List<Integer> result = new ArrayList<>();
 			for (int i = 0; i < nums.length; i++) {
@@ -40,6 +40,22 @@ public class FindAllNumbersDisappearedInArray {
 			}
 			for (int i = 0; i < nums.length; i++) {
 				if (nums[i] > 0) {
+					result.add(i+1);
+				}
+			}
+			return result;
+		}
+	}
+
+	class BruteforceSolution { // O(N), O(N)
+		public List<Integer> findDisappearedNumbers(int[] nums) {
+			List<Integer> result = new ArrayList<>();
+			boolean[] existedNumbers = new boolean[nums.length];
+			for (int i = 0; i < nums.length; i++) {
+				existedNumbers[nums[i] - 1] = true;
+			}
+			for (int i = 0; i < nums.length; i++) {
+				if (!existedNumbers[i]) {
 					result.add(i+1);
 				}
 			}
