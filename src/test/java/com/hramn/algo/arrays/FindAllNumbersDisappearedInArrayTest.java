@@ -9,7 +9,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class FindAllNumbersDisappearedInArrayTest {
-
 	@Test
 	@DisplayName("[4,3,2,7,8,2,3,1] -> [5,6]")
 	void testFindDisappearedNumbers1() {
@@ -32,6 +31,35 @@ public class FindAllNumbersDisappearedInArrayTest {
 				new FindAllNumbersDisappearedInArray();
 		FindAllNumbersDisappearedInArray.Solution solution = 
 				findAllNumbersDisappearedInArray.new Solution();
+		List<Integer> result = 
+				solution.findDisappearedNumbers(new int[]{1,1});
+		assertNotNull(result);
+		assertEquals(result.size(), 1);
+		assertEquals(result.get(0), 2);
+	}
+
+	@Test
+	@DisplayName("[4,3,2,7,8,2,3,1] -> [5,6]")
+	void testBruteforceSolutionFindDisappearedNumbers1() {
+		FindAllNumbersDisappearedInArray findAllNumbersDisappearedInArray =
+				new FindAllNumbersDisappearedInArray();
+		FindAllNumbersDisappearedInArray.BruteforceSolution solution = 
+				findAllNumbersDisappearedInArray.new BruteforceSolution();
+		List<Integer> result = 
+				solution.findDisappearedNumbers(new int[]{4,3,2,7,8,2,3,1});
+		assertNotNull(result);
+		assertEquals(result.size(), 2);
+		assertEquals(result.get(0), 5);
+		assertEquals(result.get(1), 6);
+	}
+
+	@Test
+	@DisplayName("[1,1] -> [2]")
+	void testBruteforceSolutionFindDisappearedNumbers2() {
+		FindAllNumbersDisappearedInArray findAllNumbersDisappearedInArray =
+				new FindAllNumbersDisappearedInArray();
+		FindAllNumbersDisappearedInArray.BruteforceSolution solution = 
+				findAllNumbersDisappearedInArray.new BruteforceSolution();
 		List<Integer> result = 
 				solution.findDisappearedNumbers(new int[]{1,1});
 		assertNotNull(result);

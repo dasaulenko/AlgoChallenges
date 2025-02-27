@@ -72,7 +72,7 @@ public class MinimumSizeSubarraySum {
 		}
 	}
 
-	class SlidingWindowSolution {
+	class SlidingWindowSolution { // O(n), O(1)
 		public int minSubArrayLen(int target, int[] nums) {
 			int result = Integer.MAX_VALUE;
 			boolean isExist = false;
@@ -93,7 +93,7 @@ public class MinimumSizeSubarraySum {
 		}	
 	}
 	
-	class Solution_better {
+	class Solution_better { // O(n), O(1)
 		public int minSubArrayLen(int target, int[] nums) {
 	        int l = 0;
 	        int r = 0;
