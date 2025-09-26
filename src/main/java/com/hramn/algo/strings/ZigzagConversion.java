@@ -43,6 +43,7 @@ import java.util.List;
  * s consists of English letters (lower-case and upper-case), ',' and '.'.
  * 1 <= numRows <= 1000
  */
+
 public class ZigzagConversion {
 
 	public static void main(String[] args) {
@@ -70,6 +71,7 @@ public class ZigzagConversion {
 		        return s;
 	        }
 			StringBuilder result = new StringBuilder();
+			@SuppressWarnings("unchecked")
 			List<Character>[] rows = new ArrayList[numRows];
 	        int index = 0, k = 1;
 	        boolean b = false;
