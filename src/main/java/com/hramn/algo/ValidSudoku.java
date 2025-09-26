@@ -48,10 +48,74 @@ package com.hramn.algo;
  * board.length == 9
  * board[i].length == 9
  * board[i][j] is a digit 1-9 or '.'.
+ * 
+ * TAG: medium
  */
 
 public class ValidSudoku {
-	static class Solution_my {
+	class Solution_20250904 {
+		public boolean isValidSudoku(char[][] board) {	
+			int[][] rows = new int[9][9];
+			int[][] cols = new int[9][9];
+			int[][] boxes = new int[9][9];
+			for (int i = 0; i < 9; i++) {
+				for (int j = 0; j < 9; j++) {
+					char ch = board[i][j];
+					if (ch != '.') {
+						int num = ch - '0';
+						int index = i/3*3 + j/3;
+						if (rows[i][num-1] + cols[j][num-1] + boxes[index][num-1] != 0) {
+							return false;
+						}
+						rows[i][num-1]++;
+						cols[j][num-1]++;
+						boxes[index][num-1]++;
+					}
+				}
+			}
+			return true;
+		}
+	}
+
+	class Solution_20250830 {
+		public boolean isValidSudoku(char[][] board) {
+			int m = board.length;
+			int n = board[0].length;
+			for (int i = 0; i < m; i++) {
+				for (int j = 0; j < n; j++) {
+					char ch = board[i][j];
+					if (ch != '.') {
+						for (int k = i+1; k < m; k++) {
+							if (ch == board[k][j]) {
+								return false;
+							}
+						}
+						for (int k = j+1; k < n; k++) {
+							if (ch == board[i][k]) {
+								return false;
+							}
+						}
+						int l = j+1;
+						int k = i;
+						while (k < i/3*3+3) {
+							if (l < j/3*3+3) {
+								if (ch == board[k][l]) {
+									return false;
+								}
+								l++; 
+							} else {
+								k++;
+								l = j/3*3;
+							}
+						}
+					}
+				}
+			}
+			return true;
+		}
+	}
+
+	class Solution_20240504 { // O(9*9)
 		public boolean isValidSudoku(char[][] board) {
 			int[][] cch = new int[9][10];
 			int[][] sch = new int[9][10];
