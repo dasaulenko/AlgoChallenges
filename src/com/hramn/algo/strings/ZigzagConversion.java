@@ -70,14 +70,14 @@ public class ZigzagConversion {
 		        return s;
 	        }
 			StringBuilder result = new StringBuilder();
-			List<Character>[] rows = new ArrayList[numRows];
+			List<List<Character>> rows = new ArrayList<>(numRows);
 	        int index = 0, k = 1;
 	        boolean b = false;
 	        for (Character ch : s.toCharArray()) {
-		        if (rows[index] == null) {
-	                rows[index] = new ArrayList<>();
+		        if (rows.get(index) == null) {
+	                rows.add(index, new ArrayList<>());
 	            }
-	            rows[index].add(ch);
+	            rows.get(index).add(ch);
 		        if ((b && index == 0) || index == numRows - 1) {
 		            k *= -1;
 		            b = true;
@@ -85,7 +85,7 @@ public class ZigzagConversion {
 	            index += k;
 	        }
 	        for (int i = 0; i < numRows; i++) {
-		        for (Character ch: rows[i]) {
+		        for (Character ch : rows.get(i)) {
 		            result.append(ch);
 	            }
 	        }
