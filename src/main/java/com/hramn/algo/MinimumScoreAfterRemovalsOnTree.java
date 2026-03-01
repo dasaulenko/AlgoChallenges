@@ -90,19 +90,18 @@ public class MinimumScoreAfterRemovalsOnTree {
 			if (n == 3) {
 				return getResult (nums[0], nums[1], nums[2]);
 			}
-			List<Integer>[] graph = new ArrayList[n];
+			List<List<Integer>> graph = new ArrayList<>(n);
 			for (int i = 0; i < n; i++) {
-				graph[i] = new ArrayList<>();
+				graph.add(i, new ArrayList<>());
 			}
 			for (int[] e : edges) {
-				graph[e[0]].add(e[1]);
-				graph[e[1]].add(e[0]);
+				graph.get(e[0]).add(e[1]);
+				graph.get(e[1]).add(e[0]);
 			}
-			// System.out.println(Arrays.deepToString(graph));
 			int[] pref = new int[n];
-			Set<Integer>[] desc = new HashSet[n];
+			List<Set<Integer>> desc = new ArrayList<>(n);
 			for (int i = 0; i < n; i++) {
-				desc[i] = new HashSet<>();
+				desc.add(i, new HashSet<>());
 			}
 			recDfs (graph, 0, -1, nums, pref, desc);
 			// stackDfs (graph, 0, nums, pref, desc);
@@ -115,11 +114,11 @@ public class MinimumScoreAfterRemovalsOnTree {
 					int xor1 = 0;
 					int xor2 = 0;
 					int xor3 = 0;
-					if (desc[i].contains(j)) {
+					if (desc.get(i).contains(j)) {
 						xor1 = xorJ;
 						xor2 = xorI ^ xorJ;
 						xor3 = pref[0] ^ xorI;
-					} else if (desc[j].contains(i)) {
+					} else if (desc.get(j).contains(i)) {
 						xor1 = xorI;
 						xor2 = xorJ ^ xorI;
 						xor3 = pref[0] ^ xorJ;
@@ -141,20 +140,20 @@ public class MinimumScoreAfterRemovalsOnTree {
 			return xorMax - xorMin;
 		}
 
-		void recDfs (List<Integer>[] graph, int start, int parent, int[] nums, int[] pref, Set<Integer>[] desc) {
+		void recDfs (List<List<Integer>> graph, int start, int parent, int[] nums, int[] pref, List<Set<Integer>> desc) {
 			pref[start] = nums[start];
-			desc[start].add(start);
-			List<Integer> children = graph[start];
+			desc.get(start).add(start);
+			List<Integer> children = graph.get(start);
 			for (int child : children) {
 				if (child != parent) {
 					recDfs (graph, child, start, nums, pref, desc);
 					pref[start] ^= pref[child];
-					desc[start].addAll(desc[child]);
+					desc.get(start).addAll(desc.get(child));
 				}
 			}
 		}
 
-		void stackDfs (List<Integer>[] graph, int start, int[] nums, int[] pref, Set<Integer>[] desc) {
+		void stackDfs (List<List<Integer>> graph, int start, int[] nums, int[] pref, List<Set<Integer>> desc) {
 			List<Integer> stack = new LinkedList<>();
 			int[] parents = new int[nums.length];
 			for (int i = 0; i < nums.length; i++) {
@@ -166,8 +165,8 @@ public class MinimumScoreAfterRemovalsOnTree {
 				int node = stack.getFirst();
 				if (visited[node] == 0) {
 					pref[node] = nums[node];
-					desc[node].add(node);
-					List<Integer> rel = graph[node];
+					desc.get(node).add(node);
+					List<Integer> rel = graph.get(node);
 					for (int n : rel) {
 						if (visited[n] == -1) {
 							stack.addFirst(n);
@@ -176,11 +175,11 @@ public class MinimumScoreAfterRemovalsOnTree {
 					}
 				} else {
 					stack.removeFirst();
-					List<Integer> rel = graph[node];
+					List<Integer> rel = graph.get(node);
 					for (int n : rel) {
 						if (n != parents[n]) {
 							pref[node] ^= pref[n];
-							desc[node].addAll(desc[n]);
+							desc.get(node).addAll(desc.get(n));
 						}
 					}
 				}
