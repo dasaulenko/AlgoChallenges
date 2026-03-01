@@ -1,0 +1,66 @@
+package com.hramn.algo;
+/**
+ * 2566. Maximum Difference by Remapping a Digit
+ * https://leetcode.com/problems/maximum-difference-by-remapping-a-digit/description
+ * 
+ * You are given an integer num. You know that Bob will sneakily remap one of 
+ * the 10 possible digits (0 to 9) to another digit.
+ * 
+ * Return the difference between the maximum and minimum values Bob can make 
+ * by remapping exactly one digit in num.
+ * 
+ * Notes:
+ * - When Bob remaps a digit d1 to another digit d2, Bob replaces all 
+ *   occurrences of d1 in num with d2.
+ * - Bob can remap a digit to itself, in which case num does not change.
+ * - Bob can remap different digits for obtaining minimum and maximum values 
+ *   respectively.
+ * 
+ * The resulting number after remapping can contain leading zeroes.
+ * 
+ * Example 1:
+ * Input: num = 11891
+ * Output: 99009
+ * Explanation: 
+ * To achieve the maximum value, Bob can remap the digit 1 to the digit 9 to yield 99899.
+ * To achieve the minimum value, Bob can remap the digit 1 to the digit 0, yielding 890.
+ * The difference between these two numbers is 99009.
+ * 
+ * Example 2:
+ * Input: num = 90
+ * Output: 99
+ * Explanation:
+ * The maximum value that can be returned by the function is 99 (if 0 is replaced by 9) and the minimum value that can be returned by the function is 0 (if 9 is replaced by 0).
+ * Thus, we return 99.
+ * 
+ * Constraints:
+ * 1 <= num <= 10^8
+ * 
+ * TAG: 20250617
+ * TAG: easy
+ * TAG: number
+ */
+public class MaximumDifferenceByRemappingDigit {
+	class Solution { // O(1), O(1)
+		public int minMaxDifference(int num) {
+			Integer numI = num;
+			String s = numI.toString();
+			int n = s.length();
+			int minD = -1, min = 0;
+			int maxD = -1, max = 0;
+			for (int i = 0; i < n; i++) {
+				int curD = s.charAt(i) - '0';
+				if (maxD == -1 && curD < 9) {
+					maxD = curD;
+				}
+				if (minD == -1) {
+					minD = curD;
+				}
+				double k = Math.pow (10, n - i -1);
+				max += curD == maxD ? 9 * k : curD * k;
+				min += curD == minD ? 0 : curD * k;
+			}
+			return max - min;
+		}
+	}
+}
