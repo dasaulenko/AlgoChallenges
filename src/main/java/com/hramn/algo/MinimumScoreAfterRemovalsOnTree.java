@@ -102,7 +102,7 @@ public class MinimumScoreAfterRemovalsOnTree {
 			}
 			List<List<Integer>> graph = new ArrayList<>(n);
 			for (int i = 0; i < n; i++) {
-				graph.add(new ArrayList<>());
+				graph.add(i, new ArrayList<>());
 			}
 			for (int[] e : edges) {
 				graph.get(e[0]).add(e[1]);
@@ -111,7 +111,7 @@ public class MinimumScoreAfterRemovalsOnTree {
 			int[] pref = new int[n];
 			List<Set<Integer>> desc = new ArrayList<>(n);
 			for (int i = 0; i < n; i++) {
-				desc.add(new HashSet<>());
+				desc.add(i, new HashSet<>());
 			}
 			recDfs (graph, 0, -1, nums, pref, desc);
 			// stackDfs (graph, 0, nums, pref, desc);
@@ -163,7 +163,7 @@ public class MinimumScoreAfterRemovalsOnTree {
 			}
 		}
 
-		void stackDfs (List<Integer>[] graph, int start, int[] nums, int[] pref, Set<Integer>[] desc) {
+		void stackDfs (List<List<Integer>> graph, int start, int[] nums, int[] pref, List<Set<Integer>> desc) {
 			List<Integer> stack = new LinkedList<>();
 			int[] parents = new int[nums.length];
 			for (int i = 0; i < nums.length; i++) {
@@ -175,8 +175,8 @@ public class MinimumScoreAfterRemovalsOnTree {
 				int node = stack.getFirst();
 				if (visited[node] == 0) {
 					pref[node] = nums[node];
-					desc[node].add(node);
-					List<Integer> rel = graph[node];
+					desc.get(node).add(node);
+					List<Integer> rel = graph.get(node);
 					for (int n : rel) {
 						if (visited[n] == -1) {
 							stack.addFirst(n);
@@ -185,11 +185,11 @@ public class MinimumScoreAfterRemovalsOnTree {
 					}
 				} else {
 					stack.removeFirst();
-					List<Integer> rel = graph[node];
+					List<Integer> rel = graph.get(node);
 					for (int n : rel) {
 						if (n != parents[n]) {
 							pref[node] ^= pref[n];
-							desc[node].addAll(desc[n]);
+							desc.get(node).addAll(desc.get(n));
 						}
 					}
 				}
