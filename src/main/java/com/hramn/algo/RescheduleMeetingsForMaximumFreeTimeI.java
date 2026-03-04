@@ -59,7 +59,7 @@ import java.util.List;
  * TAG: medium
  * TAG: reschedule
  * TAG: prefix_sums
- * TAG: sliding_window
+ * TAG: sliding window
  */
 public class RescheduleMeetingsForMaximumFreeTimeI {
 	class Solution { // O(N), O(N + M), N - startTime.length, M - k

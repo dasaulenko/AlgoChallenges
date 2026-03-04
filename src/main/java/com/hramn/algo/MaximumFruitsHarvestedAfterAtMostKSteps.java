@@ -53,7 +53,7 @@ package com.hramn.algo;
  * 0 <= k <= 2 * 10^5
  * 
  * TAG: hard
- * TAG: sliding_window
+ * TAG: sliding window
  */
 public class MaximumFruitsHarvestedAfterAtMostKSteps {
 	class MySolution { // O(N), O(1) where N - fruits.length

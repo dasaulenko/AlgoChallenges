@@ -12,23 +12,41 @@ import org.junit.jupiter.api.Test;
 public class BuildArrayFromPermutationTest {
 	@Test
 	@DisplayName("nums = [0,2,1,5,3,4] -> [0,1,2,4,5,3]")
-	void testSolutionBuildArray1() {
+	void testFollowUpSolution1BuildArray1() {
 		BuildArrayFromPermutation main = new BuildArrayFromPermutation();
-		BuildArrayFromPermutation.Solution solution = main.new Solution();
+		BuildArrayFromPermutation.FollowUpSolution1 solution = main.new FollowUpSolution1();
 		int[] result = solution.buildArray(new int[] {0,2,1,5,3,4});
 		assertNotNull(result);
-		assertEquals(6, result.length);
 		assertTrue(Arrays.equals(new int[] {0,1,2,4,5,3}, result));
 	}
 
 	@Test
 	@DisplayName("nums = [5,0,1,2,3,4] -> [4,5,0,1,2,3]")
-	void testSolutionBuildArray2() {
+	void testFollowUpSolution1BuildArray2() {
 		BuildArrayFromPermutation main = new BuildArrayFromPermutation();
-		BuildArrayFromPermutation.Solution solution = main.new Solution();
+		BuildArrayFromPermutation.FollowUpSolution1 solution = main.new FollowUpSolution1();
 		int[] result = solution.buildArray(new int[] {5,0,1,2,3,4});
 		assertNotNull(result);
-		assertEquals(6, result.length);
+		assertTrue(Arrays.equals(new int[] {4,5,0,1,2,3}, result));
+	}
+
+	@Test
+	@DisplayName("nums = [0,2,1,5,3,4] -> [0,1,2,4,5,3]")
+	void testFollowUpSolution2BuildArray1() {
+		BuildArrayFromPermutation main = new BuildArrayFromPermutation();
+		BuildArrayFromPermutation.FollowUpSolution2 solution = main.new FollowUpSolution2();
+		int[] result = solution.buildArray(new int[] {0,2,1,5,3,4});
+		assertNotNull(result);
+		assertTrue(Arrays.equals(new int[] {0,1,2,4,5,3}, result));
+	}
+
+	@Test
+	@DisplayName("nums = [5,0,1,2,3,4] -> [4,5,0,1,2,3]")
+	void testFollowUpSolution2BuildArray2() {
+		BuildArrayFromPermutation main = new BuildArrayFromPermutation();
+		BuildArrayFromPermutation.FollowUpSolution2 solution = main.new FollowUpSolution2();
+		int[] result = solution.buildArray(new int[] {5,0,1,2,3,4});
+		assertNotNull(result);
 		assertTrue(Arrays.equals(new int[] {4,5,0,1,2,3}, result));
 	}
 

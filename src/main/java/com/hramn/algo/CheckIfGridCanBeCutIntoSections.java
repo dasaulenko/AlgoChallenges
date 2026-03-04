@@ -1,4 +1,4 @@
-package com.hramn.algo.arrays;
+package com.hramn.algo;
 
 import java.util.Arrays;
 import java.util.Iterator;
@@ -6,9 +6,8 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * https://leetcode.com/problems/check-if-grid-can-be-cut-into-sections/description
- * 
  * 3394. Check if Grid can be Cut into Sections
+ * https://leetcode.com/problems/check-if-grid-can-be-cut-into-sections/description
  * 
  * You are given an integer n representing the dimensions of an n x n grid, 
  * with the origin at the bottom-left corner of the grid. You are also given 
@@ -53,9 +52,13 @@ import java.util.List;
  * 0 <= rectangles[i][0] < rectangles[i][2] <= n
  * 0 <= rectangles[i][1] < rectangles[i][3] <= n
  * No two rectangles overlap.
+ * 
+ * TAG: medium
+ * TAG: arrays
+ * TAG: sort
  */
 public class CheckIfGridCanBeCutIntoSections {
-	class SortSolution { // O(N * log(N)), O(N)
+	class SortSolution { // O(N * log(N)), O(N), where N = rectangles.length
 		public boolean checkValidCuts(int n, int[][] rectangles) {
 			int[][] xInter = new int[rectangles.length][2];
 			int[][] yInter = new int[rectangles.length][2];
@@ -82,7 +85,7 @@ public class CheckIfGridCanBeCutIntoSections {
 		}
 	}
 	
-	class BruteforceSolution { // O(N^2), O(N)
+	class BruteforceSolution { // O(N^2), O(N), where N = rectangles.length
 		public boolean checkValidCuts(int n, int[][] rectangles) {
 			List<int[]> x = new LinkedList<>();
 			List<int[]> y = new LinkedList<>();
