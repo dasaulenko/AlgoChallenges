@@ -33,6 +33,11 @@ import java.util.Set;
  * tree.
  * 
  * Example 1:
+ * 1 - 5
+ *     | \
+ *     5  4
+ *         \
+ *         11
  * Input: nums = [1,5,5,4,11], edges = [[0,1],[1,2],[1,3],[3,4]]
  * Output: 9
  * Explanation: The diagram above shows a way to make a pair of removals.
@@ -46,6 +51,11 @@ import java.util.Set;
  * than 9.
  * 
  * Example 2:
+ * 	5 - 5
+ *     / \
+ *    4   2
+ *   /     \
+ *  4       2
  * Input: nums = [5,5,2,4,4,2], edges = [[0,1],[1,2],[5,2],[4,3],[1,3]]
  * Output: 0
  * Explanation: The diagram above shows a way to make a pair of removals.

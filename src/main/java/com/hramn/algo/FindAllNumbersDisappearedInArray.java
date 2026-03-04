@@ -1,12 +1,11 @@
-package com.hramn.algo.arrays;
+package com.hramn.algo;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /*
- * https://leetcode.com/problems/find-all-numbers-disappeared-in-an-array/description/
- * 
  * 448. Find All Numbers Disappeared in an Array
+ * https://leetcode.com/problems/find-all-numbers-disappeared-in-an-array/description/
  * 
  * Given an array nums of n integers where nums[i] is in the range [1, n], 
  * return an array of all the integers in the range [1, n] that do not appear 
@@ -27,9 +26,13 @@ import java.util.List;
  * 
  * Follow up: Could you do it without extra space and in O(n) runtime? You may 
  * assume the returned list does not count as extra space.
+ * 
+ * TAG: easy
+ * TAG: arrays
+ * TAG: inplace
  */
 public class FindAllNumbersDisappearedInArray {
-	class Solution { // O(N), O(1)
+	class Solution { // O(N), O(1), where N = nums.length
 		public List<Integer> findDisappearedNumbers(int[] nums) {
 			List<Integer> result = new ArrayList<>();
 			for (int i = 0; i < nums.length; i++) {
@@ -47,7 +50,7 @@ public class FindAllNumbersDisappearedInArray {
 		}
 	}
 
-	class BruteforceSolution { // O(N), O(N)
+	class BruteforceSolution { // O(N), O(N), where N = nums.length
 		public List<Integer> findDisappearedNumbers(int[] nums) {
 			List<Integer> result = new ArrayList<>();
 			boolean[] existedNumbers = new boolean[nums.length];

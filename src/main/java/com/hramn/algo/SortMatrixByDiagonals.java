@@ -46,7 +46,7 @@ import java.util.Arrays;
  * 
  * TAG: 20250828
  * TAG: medium
- * TAG: sorts
+ * TAG: sort
  * TAG: matrix
  */
 public class SortMatrixByDiagonals {
