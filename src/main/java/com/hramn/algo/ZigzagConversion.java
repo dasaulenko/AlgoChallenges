@@ -1,10 +1,8 @@
 package com.hramn.algo;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * 6. Zigzag Conversion
+ * https://leetcode.com/problems/zigzag-conversion/description/
  * 
  * The string "PAYPALISHIRING" is written in a zigzag pattern on a given number 
  * of rows like this: (you may want to display this pattern in a fixed font for 
@@ -42,55 +40,31 @@ import java.util.List;
  * 1 <= s.length <= 1000
  * s consists of English letters (lower-case and upper-case), ',' and '.'.
  * 1 <= numRows <= 1000
+ * 
+ * TAG: medium
+ * TAG: chars
  */
 public class ZigzagConversion {
-
-	public static void main(String[] args) {
-		Solution solution = new Solution();
-		String s = "ABCDEFGHIJKLMN";
-		String result = solution.convert(s, 4);
-		System.out.println(result);
-		assert result == "AGMBFHLNCEIKDJ";
-
-	}
-	
-	// s = “ABCDEFGHIJKLMN” numRows = 4
-	//      12343212343212
-	// A     G    M
-	// B   F H   L  N
-	// C E   I K
-	// D     J
-	//* if the length of the string is less or equal then numRows than return
-	//the length of the string
-	//* if numRows is equal one than return the length of the string
-
-	static class Solution {
-	    public String convert(String s, int numRows) {
-	        if (s.length() <= numRows || numRows == 1) {
-		        return s;
-	        }
+	class Solution {
+		public String convert(String s, int numRows) {
+			if (numRows == 1) return s;
+			StringBuilder[] sbs = new StringBuilder[numRows];
+			for (int i = 0; i < numRows; i++) {
+				sbs[i] = new StringBuilder();
+			}
+			int index = 0;
+			int pref = 1;
+			for (int i = 0; i < s.length(); i++) {
+				sbs[index].append(s.charAt(i));
+				if (index == numRows-1) pref = -1;
+				if (index == 0) pref = 1;
+				index += pref;
+			}
 			StringBuilder result = new StringBuilder();
-			List<List<Character>> rows = new ArrayList<>(numRows);
-	        int index = 0, k = 1;
-	        boolean b = false;
-	        for (Character ch : s.toCharArray()) {
-		        if (rows.get(index) == null) {
-	                rows.add(index, new ArrayList<>());
-	            }
-	            rows.get(index).add(ch);
-		        if ((b && index == 0) || index == numRows - 1) {
-		            k *= -1;
-		            b = true;
-	            }
-	            index += k;
-	        }
-	        for (int i = 0; i < numRows; i++) {
-		        for (Character ch : rows.get(i)) {
-		            result.append(ch);
-	            }
-	        }
-	        return result.toString();
-	    }
+			for (int i = 0; i < numRows; i++) {
+				result.append(sbs[i]);
+			}
+			return result.toString();
+		}
 	}
-	
 }
