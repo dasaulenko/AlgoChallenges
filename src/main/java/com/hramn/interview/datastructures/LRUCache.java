@@ -2,7 +2,9 @@ package com.hramn.interview.datastructures;
 
 import java.util.HashMap;
 import java.util.Map;
-
+/*
+TAG: Doubly Linked List
+*/
 public class LRUCache {
 	private static class Node {
 		final int key;
