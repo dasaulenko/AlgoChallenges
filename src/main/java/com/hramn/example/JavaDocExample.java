@@ -68,7 +68,6 @@ public class JavaDocExample {
 	 * @return test value or {@code -1} if test value < 0
 	 */
 	public int test(int value) {
-		System.out.println("Test value: " + value);
 		return value < 0 ? -1 : value;
 	}
 }
