@@ -1,68 +1,69 @@
-# 1075. Project Employees I
+# 1211. Queries Quality and Percentage
 
 Difficulty: Easy
-LeetCode: https://leetcode.com/problems/project-employees-i
+LeetCode: https://leetcode.com/problems/queries-quality-and-percentage/
 Topic: aggregate functions
 
 ## Description
 
-Table: Project
+Table: Queries
 
 +-------------+---------+
 | Column Name | Type    |
 +-------------+---------+
-| project_id  | int     |
-| employee_id | int     |
+| query_name  | varchar |
+| result      | varchar |
+| position    | int     |
+| rating      | int     |
 +-------------+---------+
-(project_id, employee_id) is the primary key of this table.
-employee_id is a foreign key to Employee table.
-Each row of this table indicates that the employee with employee_id is working on the project with project_id.
+This table may have duplicate rows.
+This table contains information collected from some queries on a database.
+The position column has a value from 1 to 500.
+The rating column has a value from 1 to 5. Query with rating less than 3 is a poor query.
  
-Table: Employee
 
-+------------------+---------+
-| Column Name      | Type    |
-+------------------+---------+
-| employee_id      | int     |
-| name             | varchar |
-| experience_years | int     |
-+------------------+---------+
-employee_id is the primary key of this table. It's guaranteed that experience_years is not NULL.
-Each row of this table contains information about one employee.
- 
-Write an SQL query that reports the average experience years of all the employees for each project, rounded to 2 digits.
+We define query quality as:
+
+The average of the ratio between query rating and its position.
+
+We also define poor query percentage as:
+
+The percentage of all queries with rating less than 3.
+
+Write a solution to find each query_name, the quality and poor_query_percentage.
+
+Both quality and poor_query_percentage should be rounded to 2 decimal places.
+
+When rounding to two decimal places, values exactly halfway between two possible results are rounded away from zero. For example, 0.125 is rounded to 0.13.
 
 Return the result table in any order.
 
-The query result format is in the following example.
+The result format is in the following example.
 
  ## Example
 
 Input: 
-Project table:
-+-------------+-------------+
-| project_id  | employee_id |
-+-------------+-------------+
-| 1           | 1           |
-| 1           | 2           |
-| 1           | 3           |
-| 2           | 1           |
-| 2           | 4           |
-+-------------+-------------+
-Employee table:
-+-------------+--------+------------------+
-| employee_id | name   | experience_years |
-+-------------+--------+------------------+
-| 1           | Khaled | 3                |
-| 2           | Ali    | 2                |
-| 3           | John   | 1                |
-| 4           | Doe    | 2                |
-+-------------+--------+------------------+
+Queries table:
++------------+-------------------+----------+--------+
+| query_name | result            | position | rating |
++------------+-------------------+----------+--------+
+| Dog        | Golden Retriever  | 1        | 5      |
+| Dog        | German Shepherd   | 2        | 5      |
+| Dog        | Mule              | 200      | 1      |
+| Cat        | Shirazi           | 5        | 2      |
+| Cat        | Siamese           | 3        | 3      |
+| Cat        | Sphynx            | 7        | 4      |
++------------+-------------------+----------+--------+
 Output: 
-+-------------+---------------+
-| project_id  | average_years |
-+-------------+---------------+
-| 1           | 2.00          |
-| 2           | 2.50          |
-+-------------+---------------+
-Explanation: The average experience years for the first project is (3 + 2 + 1) / 3 = 2.00 and for the second project is (3 + 2) / 2 = 2.50
++------------+---------+-----------------------+
+| query_name | quality | poor_query_percentage |
++------------+---------+-----------------------+
+| Dog        | 2.50    | 33.33                 |
+| Cat        | 0.66    | 33.33                 |
++------------+---------+-----------------------+
+Explanation: 
+Dog queries quality is ((5 / 1) + (5 / 2) + (1 / 200)) / 3 = 2.50
+Dog queries poor_ query_percentage is (1 / 3) * 100 = 33.33
+
+Cat queries quality equals ((2 / 5) + (3 / 3) + (4 / 7)) / 3 = 0.66
+Cat queries poor_ query_percentage is (1 / 3) * 100 = 33.33
