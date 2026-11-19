@@ -6,6 +6,8 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import com.hramn.algo.easy.FindMissingAndRepeatedValues;
+
 public class FindMissingAndRepeatedValuesTest {
 	@Test
 	@DisplayName("grid = [[1,3],[2,2]] -> [2,4]")
