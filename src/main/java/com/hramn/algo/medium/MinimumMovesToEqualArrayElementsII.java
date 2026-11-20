@@ -80,7 +80,7 @@ public class MinimumMovesToEqualArrayElementsII {
 			int l = 0;
 			int r = nums.length - 1;
 			while (l < r) {
-				cnt += nums[r++] - nums[l++];
+				cnt += nums[r--] - nums[l++];
 			}
 			return cnt;
 		}
