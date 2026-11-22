@@ -1,7 +1,7 @@
 package com.hramn.algo.easy;
 
 /**
- * 2124. Check if All A's Appears Before All B's
+ * <strong>2124. Check if All A's Appears Before All B's</strong>
  *
  * <p>
  * <strong>Difficulty:</strong> Easy
